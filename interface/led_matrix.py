@@ -11,25 +11,13 @@ from luma.led_matrix.device import max7219
 
 LED_MATRIX = {
     # Matrix 1
-    0: (2, -1),
-    1: (10, -1),
-    2: (18, -1),
-    3: (26, -1),
+    0: (2, -1), 1: (10, -1), 2: (18, -1), 3: (26, -1),
     # Matrix 2
-    4: (25, 8),
-    5: (17, 8),
-    6: (9, 8),
-    7: (1, 8),
+    4: (2, 7), 5: (10, 7), 6: (18, 7), 7: (26, 7),
     # Matrix 3
-    8: (2, 15),
-    9: (10, 15),
-    10: (18, 15),
-    11: (26, 15),
+    8: (2, 15), 9: (10, 15), 10: (18, 15), 11: (26, 15),
     # Matrix 4
-    12: (25, 24),
-    13: (17, 24),
-    14: (9, 24),
-    15: (1, 24),
+    12: (2, 23), 13: (10, 23), 14: (18, 23), 15: (26, 23),
 }
 
 SYMBOLS = {
@@ -59,3 +47,9 @@ def display_game_board(board, device) -> None:
                     display_symbol(draw, SYMBOLS['x'], i*4+j)
                 elif col_value == 1:
                     display_symbol(draw, SYMBOLS['o'], i*4+j)
+
+
+def display_texts(device, texts, fill='white', font=proportional(CP437_FONT), scroll_delay=0.05):
+    for i, text in enumerate(texts):
+        show_message(device, text, y_offset=(0 + i * 8),
+                     fill=fill, font=font, scroll_delay=scroll_delay)
